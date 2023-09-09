@@ -1,0 +1,60 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    overflow: visible;
+}
+/* header {
+    position: fixed !important;
+} */
+
+.scroll-snap-container {
+    margin: 0 15px 0 20px;
+    display: flex;
+    gap: 12px;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-snap-align: start;
+    scrollbar-width: none; /* hide scroll bar by default on web browsers */
+    -ms-overflow-style: none; /* hide on IE */
+    white-space: nowrap;
+    
+
+}
+.nav-item {
+    @apply w-fit h-fit bg-slate-100 rounded-lg cursor-pointer hover:bg-slate-200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+    min-width: 40px;
+    max-height: 35px;
+    padding: 10px;
+    scroll-snap-align: start;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+    .scroll-snap-container::-webkit-scrollbar {
+    display: none!important;
+    height: 0;
+    width: 0;
+    background-color: transparent;
+     }
+}
+
+.videoWrapper {
+    @apply w-fit h-fit flex flex-col justify-around items-center mt-10 rounded-xl overflow-hidden ;
+}
+.iframe {
+    @apply rounded-xl 
+}
+
+.styleTitle {
+    text-align: center;
+    margin-top: 20px;
+}
