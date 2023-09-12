@@ -48,13 +48,18 @@ body {
 }
 
 .videoWrapper {
-    @apply w-fit h-fit flex flex-col justify-around items-center mt-10 rounded-xl overflow-hidden ;
+    @apply w-[100%] h-full flex flex-col items-center mt-10 rounded-xl overflow-hidden text-center;
 }
 .iframe {
-    @apply rounded-xl 
+    @apply rounded-xl; 
 }
 
-.styleTitle {
+/* .titleWrapper {
+    padding-top: 100px;
     text-align: center;
+} */
+.title {
+    width: 50%;
+    text-align: center !important;
     margin-top: 20px;
 }
