@@ -48,18 +48,26 @@ body {
 }
 
 .videoWrapper {
-    @apply w-[100%] h-full flex flex-col items-center mt-10 rounded-xl overflow-hidden text-center;
+    @apply w-[100%] h-full flex flex-col items-center mt-10 rounded-xl overflow-hidden text-center ;
 }
 .iframe {
     @apply rounded-xl; 
 }
 
-/* .titleWrapper {
-    padding-top: 100px;
-    text-align: center;
-} */
+
 .title {
     width: 50%;
     text-align: center !important;
     margin-top: 20px;
 }
+
+
+.custom-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; 
+  }
+  
