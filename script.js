@@ -1,16 +1,18 @@
 (function() {
     
+    const searchIcon = document.getElementById('search-icon');
+    const arrowBack = document.getElementById('arrow-back');
     const searchBtn = document.getElementById('search-btn');
-    /* let searchQuery = document.getElementById('searchQuery'); */
+    let searchQuery = document.getElementById('searchQuery');
     const videoContainer = document.getElementById('wrapper-contents-container');
-    
+    let formattedDate = [];
 
-    function searchVideosMostPopular() {
+
+    // FUNCTIONS
+    function searchMostPopularVideos() {
+
         const apiKey = "AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8";
         const baseApiUrl = 'https://www.googleapis.com/youtube/v3'
-    
-        // Limpe o conteúdo anterior
-        //videoContainer.innerHTML = '';
     
     
         axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8&type=video&part=snippet&chart=mostPopular`)
@@ -19,64 +21,27 @@
             const videoIds = response.data.items.map((items) => items.id.videoId);
             const channelsId = response.data.items.map((item) => item.snippet.channelId);
             const channelTitle = response.data.items.map((item) => item.snippet.channelTitle)
-            console.log(channelTitle)
-
             const videosPublishedTime = response.data.items.map((item) => item.snippet.publishedAt)
-            console.log(videosPublishedTime)
 
-            let formattedDate = [];
+            
 
             videosPublishedTime.forEach((video) => {
-              
-                function formatarTempo(diferenca) {
-
-                    const segundosPorMinuto = 60;
-                    const minutosPorHora = 60;
-                    const horasPorDia = 24;
-                    const diasPorAno = 365.25; 
-                    const diasPorMes = 30.44; 
-                    const mesesPorAno = 12;
-                  
-                    if (diferenca < segundosPorMinuto) {
-                      return `Publicado há ${Math.floor(diferenca)} segundos`;
-                    } 
-                    else if (diferenca < (segundosPorMinuto * minutosPorHora)) {
-                      return formattedDate.push(`Publicado há ${Math.floor(diferenca / segundosPorMinuto)} minutos`);
-                    } 
-                    else if (diferenca < (segundosPorMinuto * minutosPorHora * horasPorDia)) {
-                      return formattedDate.push(`Publicado há ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora))} ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora)) === 1? 'hora' : 'horas'}`);
-                    } 
-                      
-                    else if (diferenca < (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorMes * mesesPorAno)) {
-                      return formattedDate.push(`Publicado há ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorMes))} ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorMes)) === 1 ? 'mês' : 'meses'}`);
-                    }
-                    else if (diferenca < (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorAno)) {
-                      return formattedDate.push(`Publicado há ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora * horasPorDia))} ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora * horasPorDia)) === 1 ? 'dia' : 'dias'}`);
-                    }
-                    else {
-                      return formattedDate.push(`Publicado há ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorAno))} ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorAno)) === 1 ? 'ano' : 'anos'}`);
-                    }
-                }
-
+            
                 const currentDate = new Date();
                 const dataPublicacao = new Date(video);
                 const diferencaEmSegundos = (currentDate - dataPublicacao) / 1000; // Convertendo para segundos
-                formatarTempo(diferencaEmSegundos);
-              
-                console.log(formattedDate);
-                  
-            })
+                treatingDateData(diferencaEmSegundos);
+                 
+                console.log(formattedDate)
+            });
             
 
             videoIds.forEach((videoId, index) => {
 
                 const videoPlayerSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0&controls=0&modestbranding=1&allowfullscreen`;
 
-                
-                const titles = response.data.items.map((item) => item.snippet.title)
+                const titles = response.data.items.map((item) => item.snippet.title);
 
-
-                /* console.log(channelsId[index]) */
                 axios.get(`${baseApiUrl}/channels?part=snippet&id=${channelsId[index]}&key=${apiKey}`)
                 .then(response => {
                 const channelThumbnail = response.data.items.map((item) => item.snippet.thumbnails.default.url);
@@ -119,14 +84,23 @@
         });
 
     }
-    /* searchVideosMostPopular(); */
+    searchMostPopularVideos();
     
+    function togglePrincipalNavAndQueryNav() {
+
+      const principalNavHeader = document.getElementById('principal-nav');
+      const queryNavHeader = document.getElementById('query-nav');
+
+
+      principalNavHeader.classList.toggle('hidden');
+      queryNavHeader.classList.toggle('hidden');
+    }
+
 
     function searchVideosByQuery() {
         const apiKey = "AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8";
         const baseApiUrl = 'https://www.googleapis.com/youtube/v3'
         let searchQuery = document.getElementById('searchQuery').value;
-       
 
         console.log(searchQuery)
         // Limpe o conteúdo anterior
@@ -167,53 +141,21 @@
 
             const videoIds = response.data.items.map((items) => items.id.videoId);
             const channelsId = response.data.items.map((item) => item.snippet.channelId);
-            const channelTitle = response.data.items.map((item) => item.snippet.channelTitle)
-            console.log(channelTitle)
+            const channelTitle = response.data.items.map((item) => item.snippet.channelTitle);
+            const videosPublishedTime = response.data.items.map((item) => item.snippet.publishedAt);
 
-            const videosPublishedTime = response.data.items.map((item) => item.snippet.publishedAt)
             console.log(videosPublishedTime)
-
-            let formattedDate = [];
+            console.log(channelTitle)
 
             videosPublishedTime.forEach((video) => {
               
-                function formatarTempo(diferenca) {
-
-                    const segundosPorMinuto = 60;
-                    const minutosPorHora = 60;
-                    const horasPorDia = 24;
-                    const diasPorAno = 365.25; 
-                    const diasPorMes = 30.44; 
-                    const mesesPorAno = 12;
-                  
-                    if (diferenca < segundosPorMinuto) {
-                      return `Publicado há ${Math.floor(diferenca)} segundos`;
-                    } 
-                    else if (diferenca < (segundosPorMinuto * minutosPorHora)) {
-                      return formattedDate.push(`Publicado há ${Math.floor(diferenca / segundosPorMinuto)} minutos`);
-                    } 
-                    else if (diferenca < (segundosPorMinuto * minutosPorHora * horasPorDia)) {
-                      return formattedDate.push(`Publicado há ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora))} ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora)) === 1? 'hora' : 'horas'}`);
-                    } 
-                      
-                    else if (diferenca < (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorMes * mesesPorAno)) {
-                      return formattedDate.push(`Publicado há ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorMes))} ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorMes)) === 1 ? 'mês' : 'meses'}`);
-                    }
-                    else if (diferenca < (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorAno)) {
-                      return formattedDate.push(`Publicado há ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora * horasPorDia))} ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora * horasPorDia)) === 1 ? 'dia' : 'dias'}`);
-                    }
-                    else {
-                      return formattedDate.push(`Publicado há ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorAno))} ${Math.floor(diferenca / (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorAno)) === 1 ? 'ano' : 'anos'}`);
-                    }
-                }
+                treatingDateData(time)
 
                 const currentDate = new Date();
                 const dataPublicacao = new Date(video);
                 const diferencaEmSegundos = (currentDate - dataPublicacao) / 1000; // Convertendo para segundos
                 formatarTempo(diferencaEmSegundos);
               
-                console.log(formattedDate);
-                  
             })
             
 
@@ -271,6 +213,44 @@
         });
     }
   
-/* searchBtn.addEventListener('click', () => searchVideosByQuery()); */
+    function treatingDateData(time) {
+
+      const segundosPorMinuto = 60;
+      const minutosPorHora = 60;
+      const horasPorDia = 24;
+      const diasPorAno = 365.25; 
+      const diasPorMes = 30.44; 
+      const mesesPorAno = 12;
+    
+
+      if (time < segundosPorMinuto) {
+        return formattedDate.push(`Publicado há ${Math.floor(time)} segundos`);
+      } 
+      else if (time < (segundosPorMinuto * minutosPorHora)) {
+        return formattedDate.push(`Publicado há ${Math.floor(time / segundosPorMinuto)} minutos`);
+      } 
+      else if (time < (segundosPorMinuto * minutosPorHora * horasPorDia)) {
+        return formattedDate.push(`Publicado há ${Math.floor(time / (segundosPorMinuto * minutosPorHora))} ${Math.floor(time / (segundosPorMinuto * minutosPorHora)) === 1? 'hora' : 'horas'}`);
+      } 
+        
+      else if (time < (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorMes * mesesPorAno)) {
+        return formattedDate.push(`Publicado há ${Math.floor(time / (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorMes))} ${Math.floor(time / (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorMes)) === 1 ? 'mês' : 'meses'}`);
+      }
+      else if (time < (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorAno)) {
+        return formattedDate.push(`Publicado há ${Math.floor(time / (segundosPorMinuto * minutosPorHora * horasPorDia))} ${Math.floor(time / (segundosPorMinuto * minutosPorHora * horasPorDia)) === 1 ? 'dia' : 'dias'}`);
+      }
+      else {
+        return formattedDate.push(`Publicado há ${Math.floor(time / (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorAno))} ${Math.floor(time / (segundosPorMinuto * minutosPorHora * horasPorDia * diasPorAno)) === 1 ? 'ano' : 'anos'}`);
+      }
+    }
+
+
+    // EVENTS
+    searchIcon.addEventListener('click', () => {
+      console.log('clicou')
+    });
+    searchIcon.addEventListener('click', togglePrincipalNavAndQueryNav);
+    arrowBack.addEventListener('click', togglePrincipalNavAndQueryNav);
+    /* searchBtn.addEventListener('click', () => searchVideosByQuery()); */
 
 })()
