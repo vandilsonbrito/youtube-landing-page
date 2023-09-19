@@ -47,33 +47,16 @@
               const channelThumbnail = response.data.items.map((item) => item.snippet.thumbnails.default.url);
               
               
-              videoContainer.innerHTML += `
-
-                  <div class="w-[300px] h-fit mb-10">
-                      <div class="w-[300px] h-[155px]">
-                          <iframe class="" src="${videoPlayerSrc}"></iframe>
-                      </div>
-                      <div class="w-full h-full pt-2 ">
-                      <div class="w-full flex gap-3 " style="display: grid; grid-template-areas: 'image-container info-video-container'; grid-template-rows: 1; grid-template-columns: auto 2fr;">
-                              <div class="rounded-full">
-                                  <img class="w-10 h-10 rounded-full" src="${channelThumbnail}" alt="">
-                              </div>
-                              <div class="">
-                              <div class="w-full max-h-[45px] overflow-hidden custom-text">
-                                  <p class="text-[#0f0f0fcb] text-base font-bold">${titles[videoIds.indexOf(videoId)]}</p>
-                                  </div>
-                                  <div class="mt-2">
-                                    <p class="text-sm text-[#606060]">${channelTitle[index]}</p>
-                                  </div>
-                                  <div class=" ">
-                                    <p class="text-sm text-[#606060]">${formattedDate[index]}</p>
-                                  </div>
-                              </div>
-                              </div>
-                          </div>
-                  </div>
-              
-              `
+              videoContainer.innerHTML += createVideoContainerHTML(
+                videoPlayerSrc,
+                channelThumbnail,
+                videoIds,
+                videoId,
+                titles,
+                channelTitle,
+                formattedDate,
+                index
+              )
               })
         
       });
@@ -143,39 +126,19 @@
               const channelThumbnail = response.data.items.map((item) => item.snippet.thumbnails.default.url);
               
               
-              videoContainer.innerHTML += `
-
-                  <div class="w-[300px] h-fit mb-10">
-                      <div class="w-[300px] h-[155px]">
-                          <iframe class="" src="${videoPlayerSrc}"></iframe>
-                      </div>
-                      <div class="w-full h-full pt-2 ">
-                      <div class="w-full flex gap-3 " style="display: grid; grid-template-areas: 'image-container info-video-container'; grid-template-rows: 1; grid-template-columns: auto 2fr;">
-                              <div class="rounded-full">
-                                  <img class="w-10 h-10 rounded-full" src="${channelThumbnail}" alt="">
-                              </div>
-                              <div class="">
-                              <div class="w-full max-h-[45px] overflow-hidden custom-text">
-                                  <p class="text-[#0f0f0fcb] text-base font-bold">${titles[videoIds.indexOf(videoId)]}</p>
-                                  </div>
-                                  <div class="mt-2">
-                                    <p class="text-sm text-[#606060]">${channelTitle[index]}</p>
-                                  </div>
-                                  <div class=" ">
-                                    <p class="text-sm text-[#606060]">${formattedDate[index]}</p>
-                                  </div>
-                              </div>
-                              </div>
-                          </div>
-                  </div>
-              
-              `
+              videoContainer.innerHTML += createVideoContainerHTML(
+                videoPlayerSrc,
+                channelThumbnail,
+                videoIds,
+                videoId,
+                titles,
+                channelTitle,
+                formattedDate,
+                index
+              )
               })
         
       });
-
-
-
 
       })
       .catch(error => {
@@ -218,6 +181,45 @@
     }
 
     formattedDate.push(message);
+  }
+
+  function createVideoContainerHTML(
+    videoPlayerSrc,
+    channelThumbnail,
+    videoIds,
+    videoId,
+    titles,
+    channelTitle,
+    formattedDate,
+    index
+  ) {
+    return `
+        <div class="w-[300px] h-fit mb-10">
+          <div class="w-[300px] h-[155px]">
+            <iframe class="" src="${videoPlayerSrc}"></iframe>
+          </div>
+          <div class="w-full h-full pt-2">
+            <div class="w-full flex gap-3" style="display: grid; grid-template-areas: 'image-container info-video-container'; grid-template-rows: 1; grid-template-columns: auto 2fr;">
+              <div class="rounded-full">
+                <img class="w-10 h-10 rounded-full" src="${channelThumbnail}" alt="">
+              </div>
+              <div class="">
+                <div class="w-full max-h-[45px] overflow-hidden custom-text">
+                  <p class="text-[#0f0f0fcb] text-base font-bold">${
+                    titles[videoIds.indexOf(videoId)]
+                  }</p>
+                </div>
+                <div class="mt-2">
+                  <p class="text-sm text-[#606060]">${channelTitle[index]}</p>
+                </div>
+                <div class="">
+                  <p class="text-sm text-[#606060]">${formattedDate[index]}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
   }
 
 
