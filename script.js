@@ -5,17 +5,18 @@
     const arrowBack = document.getElementById("arrow-back");
     const searchBtn = document.getElementById("search-btn");
     const videoContainer = document.getElementById("wrapper-contents-container");
+    const scrollSnapContainer = document.querySelector(".scroll-snap-container");
     let formattedDate = [];
 
 
   // FUNCTIONS
-  function searchMostPopularVideos() {
+  function searchMostPopularVideos(recentlyUploaded) {  
 
       const apiKey = "AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8";
       const baseApiUrl = 'https://www.googleapis.com/youtube/v3'
+
   
-  
-      axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8&type=video&part=snippet&chart=mostPopular`)
+      axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8&type=video&part=snippet&${recentlyUploaded}chart=mostPopular`)
       .then(response => {
   
           const videoIds = response.data.items.map((items) => items.id.videoId);
@@ -25,8 +26,8 @@
 
           
 
+          formattedDate = [];
           videosPublishedTime.forEach((video) => {
-          
               const currentDate = new Date();
               const dataPublicacao = new Date(video);
               const diferencaEmSegundos = (currentDate - dataPublicacao) / 1000; // Convertendo para segundos
@@ -36,11 +37,13 @@
           });
           
 
+          videoContainer.innerHTML = '';
           videoIds.forEach((videoId, index) => {
 
               const videoPlayerSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0&controls=0&modestbranding=1&allowfullscreen`;
 
               const titles = response.data.items.map((item) => item.snippet.title);
+
 
               axios.get(`${baseApiUrl}/channels?part=snippet&id=${channelsId[index]}&key=${apiKey}`)
               .then(response => {
@@ -80,11 +83,11 @@
   }
 
 
-  function searchVideosByQuery() {
+  function searchVideosByQuery(searchQuery) {
       const apiKey = "AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8";
-      const baseApiUrl = 'https://www.googleapis.com/youtube/v3'
-      const searchQuery = document.getElementById("search-query").value;;
+      const baseApiUrl = 'https://www.googleapis.com/youtube/v3';
 
+   
       console.log(searchQuery)
       // Limpe o conteúdo anterior
       videoContainer.innerHTML = '';
@@ -116,7 +119,6 @@
 
               const videoPlayerSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0&controls=0&modestbranding=1&allowfullscreen`;
 
-              
               const titles = response.data.items.map((item) => item.snippet.title)
 
 
@@ -144,6 +146,27 @@
       .catch(error => {
           console.error(error);
       });
+  }
+
+  function searchByScrollSnapContainer(e) {
+    
+    const navItem = document.querySelectorAll('.nav-item');
+    Array.from(navItem).forEach((item) => {
+        if(e.target === item) {
+            const itemName = item.firstElementChild.textContent;
+            if(itemName === 'All') {
+                searchMostPopularVideos()
+            }
+            else if(itemName === 'Recently Uploaded') {
+                const recentlyUploaded = 'order=date&';
+                searchMostPopularVideos(recentlyUploaded)   
+            }
+            else {
+                searchVideosByQuery(itemName);
+            }
+        }
+    })
+
   }
 
   function treatingDateData(time) {
@@ -223,12 +246,15 @@
   }
 
 
-     // EVENTS
-     searchMostPopularVideos();
-     youtubeLogo.addEventListener('click', searchMostPopularVideos);
-     searchIcon.addEventListener("click", togglePrincipalNavAndQueryNav);
-     arrowBack.addEventListener("click", togglePrincipalNavAndQueryNav);
-     searchBtn.addEventListener("click", searchVideosByQuery);
-     arrowBack.addEventListener('click', searchMostPopularVideos);
-
+  // EVENTS
+  /* searchMostPopularVideos(); */
+  youtubeLogo.addEventListener('click', searchMostPopularVideos);
+  searchIcon.addEventListener("click", togglePrincipalNavAndQueryNav);
+  arrowBack.addEventListener("click", togglePrincipalNavAndQueryNav);
+  searchBtn.addEventListener("click", () => {
+      const searchQuery = document.getElementById("search-query").value;
+      searchVideosByQuery(searchQuery);
+  });
+  arrowBack.addEventListener('click', searchMostPopularVideos);
+  scrollSnapContainer.addEventListener('click', searchByScrollSnapContainer);
 })()
