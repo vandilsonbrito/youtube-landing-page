@@ -6,6 +6,8 @@
     const searchBtn = document.getElementById("search-btn");
     const videoContainer = document.getElementById("wrapper-contents-container");
     const scrollSnapContainer = document.querySelector(".scroll-snap-container");
+    const eraseIcon = document.getElementById('close-icon');
+    const settingsIcon = document.getElementById('settings-icon');
     let formattedDate = [];
 
 
@@ -245,16 +247,38 @@
       `;
   }
 
+  function eraseSearchInput() {
+      const searchQueryInput = document.getElementById('search-query');
+      console.log(searchQueryInput.value)
+      searchQueryInput.value = '';
+      searchQueryInput.focus();
+  }
 
   // EVENTS
   /* searchMostPopularVideos(); */
   youtubeLogo.addEventListener('click', searchMostPopularVideos);
-  searchIcon.addEventListener("click", togglePrincipalNavAndQueryNav);
+  /* searchIcon.addEventListener("click", togglePrincipalNavAndQueryNav); */
   arrowBack.addEventListener("click", togglePrincipalNavAndQueryNav);
-  searchBtn.addEventListener("click", () => {
-      const searchQuery = document.getElementById("search-query").value;
-      searchVideosByQuery(searchQuery);
-  });
   arrowBack.addEventListener('click', searchMostPopularVideos);
+  searchBtn.addEventListener("click", () => {
+    const searchQuery = document.getElementById("search-query").value;
+    searchVideosByQuery(searchQuery);
+  });
   scrollSnapContainer.addEventListener('click', searchByScrollSnapContainer);
+  eraseIcon.addEventListener('click', eraseSearchInput); 
+
+  // Toggle Search ToolTip
+  searchIcon.addEventListener('mouseover', () => {
+     document.getElementById('search-tool-tip').classList.remove('hidden');
+  });
+  searchIcon.addEventListener('mouseleave', () => {
+    document.getElementById('search-tool-tip').classList.add('hidden');
+ });
+  settingsIcon.addEventListener('mouseover', () => {
+    document.getElementById('settings-tool-tip').classList.remove('hidden');
+ });
+ settingsIcon.addEventListener('mouseleave', () => {
+    document.getElementById('settings-tool-tip').classList.add('hidden');
+  });
+
 })()
