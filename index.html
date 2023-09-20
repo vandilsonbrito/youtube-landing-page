@@ -28,24 +28,25 @@
         <div class="w-full h-28 flex flex-col justify-between items-center px-[8px] fixed bg-white">
 
             <div class="w-full h-14 flex flex-row justify-between items-center z-0 " id="principal-nav"><!-- bg-slate-200 -->
-              <div class="flex items-center">
-                  <div class="w-[2.5rem] h-[2.5rem] rounded-full hover:bg-gray-200 flex justify-center items-center cursor-pointer"><span class="material-icons text-[1.7rem] mt-[.8px]">menu</span></div>
-                  <!-- <nav>
-                      <svg enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24" focusable="false" style="pointer-events: none; display: block; width: 100%; height: 100%;"><path d="m12 4.44 7 6.09V20h-4v-6H9v6H5v-9.47l7-6.09m0-1.32-8 6.96V21h6v-6h4v6h6V10.08l-8-6.96z"></path></svg>
-                  </nav> -->
-                  <div class="w-[95px] h-[46px] flex justify-center items-center ml-[17px] cursor-pointer" id="youtube-logo">
-                    <img class="pointer-events-none" src="./images/YB.png" alt="YouTube logo" > 
-                  </div>
-              </div>
-              
-
-              <div class="cursor-pointer">
-                  <ion-icon name="search-outline" class="text-[22px] text-gray-900 ml-2 mt-[4px] z-50" alt="search icon" id="search-icon"></ion-icon>
-              </div>
-              <div class="w-fit h-[70%] flex justify-between items-center gap-3 cursor-pointer">
-                <div class="w-[2.1rem] h-[2.1rem] rounded-full hover:bg-gray-200 flex justify-center items-center cursor-pointer">
-                    <span class="material-icons text-[1.3rem]">more_vert</span>
+                <div class="flex justify-center items-center">
+                    <div class="w-[2.5rem] h-[2.5rem] rounded-full hover:bg-gray-200 flex justify-center items-center cursor-pointer"><span class="material-icons text-[1.7rem] mt-[.8px]">menu</span></div>
+                
+                    <div class="w-[95px] h-[46px] flex justify-center items-center ml-[17px] cursor-pointer" id="youtube-logo">
+                        <img class="pointer-events-none" src="./images/YB.png" alt="YouTube logo" > 
+                    </div>
                 </div>
+                
+
+                <div class="cursor-pointer">
+                    <div class="w-[2.3rem] h-[2.3rem] rounded-full hover:bg-gray-200 flex items-center">
+                        <ion-icon name="search-outline" class="text-[22px] text-gray-900 ml-2 z-50 " alt="search icon" id="search-icon"></ion-icon>
+                    </div>
+                </div>
+                <div class="w-fit h-[70%] flex justify-between items-center gap-3 cursor-pointer">
+                    <div class="w-[2.1rem] h-[2.1rem] rounded-full hover:bg-gray-200 flex justify-center items-center cursor-pointer" id="settings-icon">
+                        <span class="material-icons text-[1.3rem]">more_vert</span>
+                    </div>
+                   
                   <div class="w-[98px] h-9 rounded-full flex justify-center items-center gap-2 bg-transparent border-[1px] border-[rgba(0,0,0,0.1)]">
                       <div class="w-[26px] ">
                           <svg height="24" viewBox="0 0 24 24" width="24" focusable="false" fill="#065fd4" style="pointer-events: none; display: block; width: 100%; height: 100%;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 1c4.96 0 9 4.04 9 9 0 1.42-.34 2.76-.93 3.96-1.53-1.72-3.98-2.89-7.38-3.03A3.996 3.996 0 0016 9c0-2.21-1.79-4-4-4S8 6.79 8 9c0 1.97 1.43 3.6 3.31 3.93-3.4.14-5.85 1.31-7.38 3.03C3.34 14.76 3 13.42 3 12c0-4.96 4.04-9 9-9zM9 9c0-1.65 1.35-3 3-3s3 1.35 3 3-1.35 3-3 3-3-1.35-3-3zm3 12c-3.16 0-5.94-1.64-7.55-4.12C6.01 14.93 8.61 13.9 12 13.9c3.39 0 5.99 1.03 7.55 2.98C17.94 19.36 15.16 21 12 21z"></path></svg>
@@ -65,95 +66,83 @@
                     <ion-icon name="search-outline" class="text-[1.2rem] text-gray-900 relative -left-[256px] " alt="search icon"></ion-icon>
                     <div class="flex items-center relative -left-[80px] top-[1px]">
                         <img class="w-[18px] h-[12px] relative " src="images/board.png" alt="board icon">
-                        <ion-icon name="close-outline" class="text-[1.5rem] text-gray-900  relative  -top-[1px] left-[5px]" alt="close icon"></ion-icon>
+                        <ion-icon name="close-outline" class="text-[1.5rem] text-gray-900  relative  -top-[1px] left-[5px] cursor-pointer" alt="close icon" id="close-icon"></ion-icon>
                     </div>
                     <div class="">
                         <button class="w-[45px] h-[38px] border-[1px] rounded-tr-3xl rounded-br-3xl relative -left-[75px] " style="background-color: #f8f8f8; border: 1px solid #d3d3d3;" id="search-btn">
                             <ion-icon name="search-outline" class="text-[1.2rem] text-gray-900 relative top-[3px] -left-[1px] pointer-events-none" alt="search icon"></ion-icon>
                         </button>
                     </div>
-                </div>
+                </div>   
+
             </div>
 
 
-          <div class="w-full h-14 flex items-center"><!--  relative whitespace-nowrap pl-3 pr-10  flex justify-around items-center  -->
-              <ul class="scroll-snap-container">
-                  <a href="#" class="nav-item">
-                      <li class="pointer-events-none">All</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                      <li class="pointer-events-none">Gaming</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                      <li class="pointer-events-none">Music</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                      <li class="pointer-events-none">Football</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                      <li class="pointer-events-none">Pop Music</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                    <li class="pointer-events-none">Sertanejo Music</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                    <li class="pointer-events-none">Sports</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                    <li class="pointer-events-none">Premier League</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                      <li class="pointer-events-none">Cartoons</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                    <li class="pointer-events-none">Learn English</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                      <li class="pointer-events-none">Action Movie</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                      <li class="pointer-events-none">Sports</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                      <li class="pointer-events-none">Guitar Lessons</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                    <li class="pointer-events-none">Palmeiras</li>
-                  </a>
-                  <a href="#" class="nav-item">
-                      <li class="pointer-events-none">Recently Uploaded</li>
-                  </a>
-              </ul>
-          </div>
+            <div class="w-full h-14 flex items-center">
+            
+                <ul class="scroll-snap-container">
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">All</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Gaming</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Music</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Football</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Pop Music</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Sertanejo Music</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Sports</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Premier League</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Cartoons</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Learn English</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Action Movie</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Sports</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Guitar Lessons</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Palmeiras</li>
+                    </a>
+                    <a href="#" class="nav-item">
+                        <li class="pointer-events-none">Recently Uploaded</li>
+                    </a>
+                </ul>
+            </div>
         </div>
     </header>
 
-     
+    <div class="w-full h-fit flex justify-center bg-slate-100 z-50 relative">
+        <div class="w-fit h-fit p-[6px] rounded-md relative -top-[50px] bg-[#616161b4] hidden " id="search-tool-tip">
+            <p class="text-white text-[0.9rem]">Search</p>
+        </div>
+        <div class="w-fit h-fit p-[6px] rounded-md relative -top-[50px] left-[50px] bg-[#616161b4] hidden  " id="settings-tool-tip">
+            <p class="text-white text-[0.9rem]">Settings</p>
+        </div>
+    </div>
 
     <main class="w-full h-full flex flex-col items-center overflow-x-hidden ">
 
         <section class="w-full h-fit bg-transparent overflow-hidden flex flex-col  items-center mt-[0px] py-[50px]" id="wrapper-contents-container">
-
-            <!-- <div class="w-[300px] h-fit bg-white mb-10">
-                <div class="w-[300px] h-[155px] bg-slate-400 ">
-                    <iframe class="" src="${videoPlayerSrc}"></iframe>
-                </div>
-                <div class="w-full flex gap-3 " style="display: grid; grid-template-areas: 'image-container info-video-container'; grid-template-rows: 1; grid-template-columns: auto 2fr;">
-                    <div class="image-container rounded-full" style="grid-area: image-container;">
-                      <img class="w-10 h-10 rounded-full" src="images/channels4_profile.jpg" alt="">
-                    </div>
-                    <div class="info-video-container" style="grid-area: info-video-container;">
-                      <div class="w-full h-[45px] bg-slate-100 overflow-hidden custom-text">
-                        <p class="text-[#0f0f0fcb] text-base font-bold"></p>
-                      </div>
-                      <div class="mt-1  "><p class="text-sm text-[#606060]">Nome do canal</p></div>
-                      <div class=" "><p class="text-sm text-[#606060]">Postado há 50 min</p></div>
-                    </div>
-                  </div>
-                  
-            </div> -->
-            
-            
             
         </section>
     </main>
