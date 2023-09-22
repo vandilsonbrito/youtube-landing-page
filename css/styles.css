@@ -9,12 +9,10 @@
 body {
     overflow: visible;
 }
-/* header {
-    position: fixed !important;
-} */
 
 .scroll-snap-container {
-    margin: 0 15px 0 20px;
+    margin-right: 20px;
+    margin-left: 20px;
     display: flex;
     gap: 12px;
     overflow-x: scroll;
@@ -24,7 +22,6 @@ body {
     -ms-overflow-style: none; /* hide on IE */
     white-space: nowrap;
     
-
 }
 .nav-item {
     @apply w-fit h-fit bg-slate-100 rounded-lg cursor-pointer hover:bg-slate-200;
@@ -36,6 +33,34 @@ body {
     max-height: 35px;
     padding: 10px;
     scroll-snap-align: start;
+}
+
+.title {
+    width: 50%;
+    text-align: center !important;
+    margin-top: 20px;
+}
+
+
+.custom-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2; 
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal; 
+}
+
+.overlay {
+    z-index: 10;
+    position: fixed;
+    width: 100%;
+    height: 100%; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); 
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:0) { 
@@ -53,21 +78,15 @@ body {
 .iframe {
     @apply rounded-xl; 
 }
-
-
-.title {
-    width: 50%;
-    text-align: center !important;
-    margin-top: 20px;
+.side-nav-wrapper-icon {
+    @apply flex items-center px-[11px] py-[6px] rounded-xl gap-[26px] text-[#0f0f0f] cursor-pointer;
+}
+.side-nav-wrapper-icon:hover {
+    @apply bg-slate-200;
 }
 
 
-.custom-text {
-    display: -webkit-box;
-    -webkit-line-clamp: 2; 
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: normal; 
-  }
+
   
+
+
