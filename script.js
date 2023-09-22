@@ -10,6 +10,7 @@
     const settingsIcon = document.getElementById('settings-icon');
     const burgerMenuLandPage = document.getElementById('burger-menu-land-page');
     const burgerMenuSideNav = document.getElementById('burger-menu-side-nav');
+  
     
     let formattedDate = [];
 
@@ -258,12 +259,39 @@
   }
 
   function toggleSideNav() {
-      const overlay = document.querySelector('.overlay');
-      const sideNav = document.getElementById('side-nav');
+    const overlay = document.querySelector('.overlay');
+    const sideNav = document.getElementById('side-nav');
+    
+    overlay.classList.toggle('hidden');
+    sideNav.classList.toggle('hidden');
 
-      overlay.classList.toggle('hidden');
-      sideNav.classList.toggle('hidden');
+    let isSideNavActived;
+    if(!sideNav.classList.contains('hidden')) {
+      limitingScrollBar(isSideNavActived = 1);
+    }
+    else {
+      limitingScrollBar(isSideNavActived = 0);
+    }
   }
+
+  function limitingScrollBar(isSideNavActived) {
+    if(isSideNavActived === 1) {
+      window.addEventListener('scroll', scrollHandler);
+    }
+    else {
+      window.removeEventListener('scroll', scrollHandler);
+    }
+    
+  }
+  function scrollHandler() {
+    const scrollTop = document.documentElement.scrollTop;
+    if(scrollTop > 520) {
+      window.scrollTo(0, 520);
+    }
+  }
+ 
+
+  
 
   // EVENTS
   /* searchMostPopularVideos(); */
