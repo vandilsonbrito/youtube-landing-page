@@ -8,6 +8,9 @@
     const scrollSnapContainer = document.querySelector(".scroll-snap-container");
     const eraseIcon = document.getElementById('close-icon');
     const settingsIcon = document.getElementById('settings-icon');
+    const burgerMenuLandPage = document.getElementById('burger-menu-land-page');
+    const burgerMenuSideNav = document.getElementById('burger-menu-side-nav');
+    
     let formattedDate = [];
 
 
@@ -254,10 +257,18 @@
       searchQueryInput.focus();
   }
 
+  function toggleSideNav() {
+      const overlay = document.querySelector('.overlay');
+      const sideNav = document.getElementById('side-nav');
+
+      overlay.classList.toggle('hidden');
+      sideNav.classList.toggle('hidden');
+  }
+
   // EVENTS
   /* searchMostPopularVideos(); */
   youtubeLogo.addEventListener('click', searchMostPopularVideos);
-  /* searchIcon.addEventListener("click", togglePrincipalNavAndQueryNav); */
+  searchIcon.addEventListener("click", togglePrincipalNavAndQueryNav);
   arrowBack.addEventListener("click", togglePrincipalNavAndQueryNav);
   arrowBack.addEventListener('click', searchMostPopularVideos);
   searchBtn.addEventListener("click", () => {
@@ -280,5 +291,8 @@
  settingsIcon.addEventListener('mouseleave', () => {
     document.getElementById('settings-tool-tip').classList.add('hidden');
   });
+
+  burgerMenuLandPage.addEventListener('click', toggleSideNav);
+  burgerMenuSideNav.addEventListener('click', toggleSideNav);
 
 })()
