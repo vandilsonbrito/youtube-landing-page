@@ -21,7 +21,7 @@
 
 </head>
 
-<body class="w-screen h-screen bg-white font-Roboto overflow-x-hidden">
+<body class="w-screen bg-white font-Roboto overflow-x-hidden">
     
     <header class="w-full h-28 flex flex-col justify-between items-center px-[8px] ">
 
@@ -135,7 +135,7 @@
 
     <!-- Side Nav -->
     <div class="overlay hidden"></div>
-    <div class="w-[260px] overflow-y-scroll overscroll-y-auto bg-white z-50 absolute -top-0 p-1 hidden " id="side-nav">
+    <div class="w-[260px] overflow-y-scroll bg-white z-50 absolute -top-0 p-1 hidden " id="side-nav">
         <header class="w-[255px] h-fit flex justify- items-center px-3 p-1 py-[5px] -mt-1 fixed overflow-hidden bg-white ">
             <div class=" w-[2.5rem] h-[2.5rem] ml-[1px] rounded-full hover:bg-gray-200 flex justify-center items-center cursor-pointer" id="burger-menu-side-nav">
                 <span class="material-icons text-[1.7rem] mt-[.8px] pointer-events-none">menu</span>
@@ -146,18 +146,23 @@
             </div>
         </header>
 
-        <section class="py-[73px] px-2 pr-4 bg-slate-100">
+        <section class="py-[73px] px-2 pr-4 ">
 
             <section class="">
                 <div class="side-nav-wrapper-icon">
-                    <div class="w-[26px]">
-                        <svg enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24" focusable="false" style="pointer-events: none; display: block; width: 100%; height: 100%;"><path d="m12 4.44 7 6.09V20h-4v-6H9v6H5v-9.47l7-6.09m0-1.32-8 6.96V21h6v-6h4v6h6V10.08l-8-6.96z"></path></svg>
+                    <div class="w-[26px] ">
+                        <!-- <svg enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24" focusable="false"  style="pointer-events: none; display: block; width: 100%; height: 100%;"><path d="m12 4.44 7 6.09V20h-4v-6H9v6H5v-9.47l7-6.09m0-1.32-8 6.96V21h6v-6h4v6h6V10.08l-8-6.96z"></path></svg> -->
+                        <svg enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24" focusable="false" style="pointer-events: none; display: block; width: 100%; height: 100%;">
+                            <path d="m12 4.44 7 6.09V20h-4v-6H9v6H5v-9.47l7-6.09" style="fill: black;"></path>
+                          </svg>
+                          
                     </div>
                     <div class="text-[0.9rem]"><p>Home</p></div>
                 </div>
                 <div class="side-nav-wrapper-icon">
                     <div class="w-[26px]">
-                        <svg height="24" viewBox="0 0 24 24" width="24" focusable="false" style="pointer-events: none; display: block; width: 100%; height: 100%;"><path d="M10 14.65v-5.3L15 12l-5 2.65zm7.77-4.33-1.2-.5L18 9.06c1.84-.96 2.53-3.23 1.56-5.06s-3.24-2.53-5.07-1.56L6 6.94c-1.29.68-2.07 2.04-2 3.49.07 1.42.93 2.67 2.22 3.25.03.01 1.2.5 1.2.5L6 14.93c-1.83.97-2.53 3.24-1.56 5.07.97 1.83 3.24 2.53 5.07 1.56l8.5-4.5c1.29-.68 2.06-2.04 1.99-3.49-.07-1.42-.94-2.68-2.23-3.25zm-.23 5.86-8.5 4.5c-1.34.71-3.01.2-3.72-1.14-.71-1.34-.2-3.01 1.14-3.72l2.04-1.08v-1.21l-.69-.28-1.11-.46c-.99-.41-1.65-1.35-1.7-2.41-.05-1.06.52-2.06 1.46-2.56l8.5-4.5c1.34-.71 3.01-.2 3.72 1.14.71 1.34.2 3.01-1.14 3.72L15.5 9.26v1.21l1.8.74c.99.41 1.65 1.35 1.7 2.41.05 1.06-.52 2.06-1.46 2.56z"></path></svg>
+                        <svg height="24" viewBox="0 0 24 24" width="24" focusable="false" style="pointer-events: none; display: block; width: 100%; height: 100%;"><path d="M10 14.65v-5.3L15 12l-5 2.65zm7.77-4.33-1.2-.5L18 9.06c1.84-.96 2.53-3.23 1.56-5.06s-3.24-2.53-5.07-1.56L6 6.94c-1.29.68-2.07 2.04-2 3.49.07 1.42.93 2.67 2.22 3.25.03.01 1.2.5 1.2.5L6 14.93c-1.83.97-2.53 3.24-1.56 5.07.97 1.83 3.24 2.53 5.07 1.56l8.5-4.5c1.29-.68 2.06-2.04 1.99-3.49-.07-1.42-.94-2.68-2.23-3.25zm-.23 5.86-8.5 4.5c-1.34.71-3.01.2-3.72-1.14-.71-1.34-.2-3.01 1.14-3.72l2.04-1.08v-1.21l-.69-.28-1.11-.46c-.99-.41-1.65-1.35-1.7-2.41-.05-1.06.52-2.06 1.46-2.56l8.5-4.5c1.34-.71 3.01-.2 3.72 1.14.71 1.34.2 3.01-1.14 3.72L15.5 9.26v1.21l1.8.74c.99.41 1.65 1.35 1.7 2.41.05 1.06-.52 2.06-1.46 2.56z" class="fill"></path></svg>
+                        
                     </div>
                     <div class="text-[0.9rem]"><p>Shorts</p></div>
                 </div>
@@ -189,6 +194,9 @@
             </section>
 
             <section class="pt-4">
+                <div class="pl-[10px] pb-[6px]">
+                    <p class="">Explore</p>
+                </div>
                 <div class="side-nav-wrapper-icon">
                     <div class="w-[25px]">
                         <svg enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24" focusable="false" style="pointer-events: none; display: block; width: 100%; height: 100%;"><path d="M19 3.87v9.77C19 17.7 15.86 21 12 21s-7-3.3-7-7.37v-.13c0-1.06.22-2.13.62-3.09.5-1.19 1.29-2.21 2.27-2.97.85-.66 1.83-1.14 2.87-1.65.39-.19.77-.38 1.15-.58.36-.19.72-.38 1.08-.56v3.22l1.55-1.04L19 3.87M20 2l-6 4V3c-.85.44-1.7.88-2.55 1.33-1.41.74-2.9 1.34-4.17 2.32-1.13.87-2.02 2.05-2.58 3.37-.46 1.09-.7 2.29-.7 3.48v.14C4 18.26 7.58 22 12 22s8-3.74 8-8.36V2zM9.45 12.89 14 10v5.7c0 1.82-1.34 3.3-3 3.3s-3-1.47-3-3.3c0-1.19.58-2.23 1.45-2.81z"></path></svg>
@@ -257,6 +265,9 @@
             </section>
 
             <section class="pt-4">
+                <div class="pl-[10px] pb-[6px]">
+                    <p class="">More from YouTube</p>
+                </div>
                 <div class="side-nav-wrapper-icon">
                     <div class="w-[25px]">
                         <svg class="external-icon" viewBox="0 0 97 20" style="width: 100%; pointer-events: none; display: block; height: 100%;" focusable="false">
@@ -278,7 +289,7 @@
                             </svg>
                           </svg>
                     </div>
-                    <div class="text-[0.9rem]"><p>YouTbue Premium</p></div>
+                    <div class="text-[0.9rem]"><p>YouTube Premium</p></div>
                 </div>
                 <div class="side-nav-wrapper-icon">
                     <div class="w-[25px]">
@@ -288,7 +299,7 @@
                             <path fill="#FFFFFF" d="M12,7c2.76,0,5,2.24,5,5s-2.24,5-5,5s-5-2.24-5-5S9.24,7,12,7 M12,6c-3.31,0-6,2.69-6,6s2.69,6,6,6s6-2.69,6-6 S15.31,6,12,6L12,6z"></path>
                           </svg>
                     </div>
-                    <div class="text-[0.9rem]"><p>YouTbue Music</p></div>
+                    <div class="text-[0.9rem]"><p>YouTube Music</p></div>
                 </div>
                 <div class="side-nav-wrapper-icon">
                     <div class="w-[25px]">
@@ -299,7 +310,7 @@
                             <path fill="#FFF" d="M10.3,9.89c0,0,0.5,4.08,0.51,4.19c0.06-0.04,3.79-2.58,3.79-2.58C13.71,11.07,11.07,10.14,10.3,9.89z"></path>
                           </svg>
                     </div>
-                    <div class="text-[0.9rem]"><p>YouTbue Kids</p></div>
+                    <div class="text-[0.9rem]"><p>YouTube Kids</p></div>
                 </div>  
                 <div class="py-2"  style="border-bottom: 1px solid rgb(0, 0, 0, 0.1); margin: 0 -5px 0 -10px;"></div>        
             </section>
@@ -315,7 +326,7 @@
                     <div class="w-[25px]">
                         <svg enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24" focusable="false" style="pointer-events: none; display: block; width: 100%; height: 100%;"><path d="m13.18 4 .24 1.2.16.8H19v7h-5.18l-.24-1.2-.16-.8H6V4h7.18M14 3H5v18h1v-9h6.6l.4 2h7V5h-5.6L14 3z"></path></svg>
                     </div>
-                    <div class="text-[0.9rem]"><p>Historic of Complaints</p></div>
+                    <div class="text-[0.9rem] custom-text-side-nav"><p>Historic of Complaints</p></div>
                 </div>
                 <div class="side-nav-wrapper-icon">
                     <div class="w-[25px]">
@@ -336,7 +347,7 @@
 
     </div>
 
-    <div class="w-full h-fit flex justify-center z-50 relative">
+    <div class="w-full h-fit justify-center z-50 relative hidden lg:flex">
         <div class="w-fit h-fit p-[6px] rounded-md relative -top-[50px] bg-[#616161b4] hidden " id="search-tool-tip">
             <p class="text-white text-[0.9rem]">Search</p>
         </div>
