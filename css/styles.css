@@ -34,6 +34,13 @@ body {
     padding: 10px;
     scroll-snap-align: start;
 }
+.nav-item-active {
+    background-color: black;
+    color: white;
+}
+.nav-item-active:hover {
+    background-color: black;
+}
 
 .title {
     width: 50%;
@@ -50,6 +57,17 @@ body {
     text-overflow: ellipsis;
     white-space: normal; 
 }
+.custom-text-side-nav {
+    max-width: 60%;
+    overflow: hidden;
+  }
+  
+  .custom-text-side-nav p {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+
 
 .overlay {
     z-index: 10;
@@ -82,9 +100,14 @@ body {
     @apply flex items-center px-[11px] py-[6px] rounded-xl gap-[26px] text-[#0f0f0f] cursor-pointer;
 }
 .side-nav-wrapper-icon:hover {
-    @apply bg-slate-200;
+    background-color: rgb(240, 240, 240);
+}
+.active {
+    background-color: rgb(240, 240, 240);
+    font-weight: bold;
 }
 
+  
 
 
   
