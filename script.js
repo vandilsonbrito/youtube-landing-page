@@ -14,9 +14,11 @@
     
     let formattedDate = [];
 
-
   // FUNCTIONS
   function searchMostPopularVideos(recentlyUploaded) {  
+      
+      const navItem = document.querySelectorAll('.nav-item');
+      navItem[0].classList.add('nav-item-active');
 
       const apiKey = "AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8";
       const baseApiUrl = 'https://www.googleapis.com/youtube/v3'
@@ -39,7 +41,6 @@
               const diferencaEmSegundos = (currentDate - dataPublicacao) / 1000; // Convertendo para segundos
               treatingDateData(diferencaEmSegundos);
                
-              console.log(formattedDate)
           });
           
 
@@ -94,12 +95,11 @@
       const baseApiUrl = 'https://www.googleapis.com/youtube/v3';
 
    
-      console.log(searchQuery)
-      // Limpe o conteúdo anterior
+     
       videoContainer.innerHTML = '';
       
 
-      // Fazer uma solicitação ao seu backend para buscar vídeos
+      // Make a request to the backend to fetch videos
       axios.get(`${baseApiUrl}/search?key=${apiKey}&type=video&part=snippet&q=${searchQuery}`)
       .then(response => {
 
@@ -128,7 +128,6 @@
               const titles = response.data.items.map((item) => item.snippet.title)
 
 
-              /* console.log(channelsId[index]) */
               axios.get(`${baseApiUrl}/channels?part=snippet&id=${channelsId[index]}&key=${apiKey}`)
               .then(response => {
               const channelThumbnail = response.data.items.map((item) => item.snippet.thumbnails.default.url);
@@ -154,11 +153,21 @@
       });
   }
 
+  let oldValueItem = null;
   function searchByScrollSnapContainer(e) {
     
     const navItem = document.querySelectorAll('.nav-item');
+    navItem[0].classList.contains('nav-item-active') ? navItem[0].classList.remove('nav-item-active') : null;
+
     Array.from(navItem).forEach((item) => {
         if(e.target === item) {
+            if(item !== oldValueItem) {
+
+              item.classList.add('nav-item-active');
+              oldValueItem?.classList.remove('nav-item-active');
+              oldValueItem = item;
+          
+            }
             const itemName = item.firstElementChild.textContent;
             if(itemName === 'All') {
                 searchMostPopularVideos()
@@ -170,7 +179,9 @@
             else {
                 searchVideosByQuery(itemName);
             }
-        }
+
+          }
+          
     })
 
   }
@@ -253,7 +264,6 @@
 
   function eraseSearchInput() {
       const searchQueryInput = document.getElementById('search-query');
-      console.log(searchQueryInput.value)
       searchQueryInput.value = '';
       searchQueryInput.focus();
   }
@@ -272,6 +282,17 @@
     else {
       limitingScrollBar(isSideNavActived = 0);
     }
+
+    const sideNavWrapperItems = document.querySelectorAll('.side-nav-wrapper-icon');
+
+    function whichIconNavIsSelected() {
+      const arrayNavItems = Array.from(sideNavWrapperItems);
+      arrayNavItems[0].classList.add('active')
+
+        const sideNavWrapperItemsPath = document.querySelectorAll('.side-nav-wrapper-icon path');
+
+    }
+    whichIconNavIsSelected()
   }
 
   function limitingScrollBar(isSideNavActived) {
@@ -294,7 +315,7 @@
   
 
   // EVENTS
-  /* searchMostPopularVideos(); */
+  searchMostPopularVideos();
   youtubeLogo.addEventListener('click', searchMostPopularVideos);
   searchIcon.addEventListener("click", togglePrincipalNavAndQueryNav);
   arrowBack.addEventListener("click", togglePrincipalNavAndQueryNav);
