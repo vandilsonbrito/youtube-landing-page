@@ -7,7 +7,8 @@
     const searchBtnMdLgScreens = document.getElementById('search-btn-md-lg-screens');
     const videoContainer = document.getElementById("wrapper-contents-container");
     const scrollSnapContainer = document.querySelector(".scroll-snap-container");
-    const eraseIcon = document.getElementById('close-icon');
+    const eraseIconSmallScreens = document.getElementById('close-icon-small-screens'); 
+    const eraseIconBigScreens = document.getElementById('close-icon-big-screens');
     const settingsIcon = document.getElementById('settings-icon');
     const burgerMenuLandPage = document.getElementById('burger-menu-land-page');
     const burgerMenuSideNav = document.getElementById('burger-menu-side-nav');
@@ -267,7 +268,9 @@
   }
 
   function eraseSearchInput() {
-      const searchQueryInput = document.getElementById('search-query');
+      let searchQueryInput;
+      window.innerWidth < 1020 ? searchQueryInput = document.getElementById('search-query') : searchQueryInput = document.getElementById('search-query-md-lg-screens');
+
       searchQueryInput.value = '';
       searchQueryInput.focus();
   }
@@ -320,7 +323,7 @@
   
 
   // EVENTS
-  searchMostPopularVideos();
+  /* searchMostPopularVideos(); */
   youtubeLogo.addEventListener('click', searchMostPopularVideos);
   searchIcon.addEventListener("click", togglePrincipalNavAndQueryNav);
   arrowBack.addEventListener("click", togglePrincipalNavAndQueryNav);
@@ -334,7 +337,7 @@
     searchVideosByQuery(searchQuery);
   });
   scrollSnapContainer.addEventListener('click', searchByScrollSnapContainer);
-  eraseIcon.addEventListener('click', eraseSearchInput); 
+  window.innerWidth < 1020 ?  eraseIconSmallScreens.addEventListener('click', eraseSearchInput) : eraseIconBigScreens.addEventListener('click', eraseSearchInput); 
 
   // Toggle Search ToolTip
   searchIcon.addEventListener('mouseover', () => {
