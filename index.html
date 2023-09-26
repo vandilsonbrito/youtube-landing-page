@@ -21,11 +21,11 @@
 
 </head>
 
-<body class="w-screen bg-white font-Roboto overflow-x-hidden">
+<body class="w-screen  bg-white font-Roboto overflow-x-hidden lg:pr-4 overflow-y-hidden">
     
-    <header class="w-full h-28 flex flex-col justify-between items-center px-[8px] ">
+    <header class="w-full h-fit flex flex-col justify-between items-center px-[12px]">
 
-        <div class="w-full h-28 flex flex-col justify-between items-center px-[8px] fixed bg-white">
+        <div class="w-full h-28 md:h-[135px] lg:h-28 flex flex-col justify-between items-center px-[8px] md:px-4 lg:mr-5 fixed bg-white ">
 
             <div class="w-full h-14 flex flex-row justify-between items-center z-0 " id="principal-nav">
                 <div class="flex justify-center items-center">
@@ -39,7 +39,7 @@
                 </div>
                 
 
-                <div class="cursor-pointer">
+                <div class="cursor-pointer md:hidden">
                     <div class="w-[2.3rem] h-[2.3rem] rounded-full hover:bg-gray-200 flex items-center">
                         <ion-icon name="search-outline" class="text-[22px] text-gray-900 ml-2 z-50 " alt="search icon" id="search-icon"></ion-icon>
                     </div>
@@ -57,7 +57,8 @@
                   </div>
               </div> 
             </div>
-          
+            
+            <!-- QUERY SEARCH NAV -->
             <div class="flex justify-between z-50 relative top-2 left-6  hidden" id="query-nav">
                 <div class="w-[2.5rem] h-[2.5rem] rounded-full hover:bg-gray-200 flex justify-center items-center cursor-pointer relative top-[px] left-[20px]" id="arrow-back">
                     <ion-icon name="arrow-back-outline" class="text-[1rem] pointer-events-none cursor-pointer"></ion-icon>
@@ -75,12 +76,11 @@
                             <ion-icon name="search-outline" class="text-[1.2rem] text-gray-900 relative top-[3px] -left-[1px] pointer-events-none" alt="search icon"></ion-icon>
                         </button>
                     </div>
-                </div>   
-
+                </div>  
             </div>
+            
 
-
-            <div class="w-full h-14 flex items-center">
+            <div class="w-full h-14 flex items-center mt-5 lg:pl-[255px]">
             
                 <ul class="scroll-snap-container">
                     <a href="#" class="nav-item">
@@ -130,23 +130,45 @@
                     </a>
                 </ul>
             </div>
+
+            
+
+            <!-- QUERY SEARCH NAV FOR MEDIUM SCREENS-->
+            <div class="hidden md:flex">
+                <div class="md:w-[480px]  lg:w-[690px] flex justify-center items-center relative md:-top-[90px] lg:-top-[95px] left-[40px] z-50">
+                    <input type="text" class="w-[100%] h-[38px] lg:h-[40px]  rounded-3xl pl-10 pr-[67px] pb-[1px] text-[14px] outline-none  ml-8  left-growing-input" style="border: 1px solid #d3d3d3;" placeholder="Search" id="search-query-md-lg-screens">
+                    <ion-icon name="search-outline" class="text-[1.5rem] text-gray-900 relative -left-[337px] lg:-left-[525px] " alt="search icon"></ion-icon>
+                    <div class="flex items-center relative -left-[85px] top-[1px]">
+                        <img class="w-[18px] h-[12px] relative " src="images/board.png" alt="board icon">
+                        <ion-icon name="close-outline" class="text-[2.3rem] text-gray-900  relative  -top-[1px] left-[5px] cursor-pointer" alt="close icon" id="close-icon"></ion-icon>
+                    </div>
+                    <div class="">
+                        <button class="w-[45px] lg:w-[62px] h-[38px] lg:h-[40px] border-[1px] rounded-tr-3xl rounded-br-3xl relative -left-[78px] " style="background-color: #f8f8f8; border: 1px solid #d3d3d3;" id="search-btn-md-lg-screens">
+                            <ion-icon name="search-outline" class="text-[1.3rem] text-gray-900 relative top-[3px] -left-[1px] pointer-events-none" alt="search icon"></ion-icon>
+                        </button>
+                    </div>
+                </div> 
+                
+                  
+            </div>
         </div>
     </header>
 
     <!-- Side Nav -->
     <div class="overlay hidden"></div>
-    <div class="w-[260px] overflow-y-scroll bg-white z-50 absolute -top-0 p-1 hidden " id="side-nav">
-        <header class="w-[255px] h-fit flex justify- items-center px-3 p-1 py-[5px] -mt-1 fixed overflow-hidden bg-white ">
-            <div class=" w-[2.5rem] h-[2.5rem] ml-[1px] rounded-full hover:bg-gray-200 flex justify-center items-center cursor-pointer" id="burger-menu-side-nav">
-                <span class="material-icons text-[1.7rem] mt-[.8px] pointer-events-none">menu</span>
-            </div>
-        
-            <div class="w-[95px] h-[46px] flex justify-center items-center ml-[16px] cursor-pointer" id="youtube-logo">
-                <img class="pointer-events-none" src="./images/YB.png" alt="YouTube logo" > 
-            </div>
-        </header>
+    <div class="w-[260px] bg-white  z-50 p-1 hidden lg:w-[240px] absolute lg:block  " id="side-nav">
+        <div id="scroll-side-nav">
+            <header class="w-[260px] h-fit flex justify- items-center px-3 p-1 py-[5px] -mt-1 -ml-1 fixed overflow-hidden bg-white ">
+                <div class=" w-[2.5rem] h-[2.5rem] ml-[1px] rounded-full hover:bg-gray-200 flex justify-center items-center cursor-pointer" id="burger-menu-side-nav">
+                    <span class="material-icons text-[1.7rem] mt-[.8px] pointer-events-none">menu</span>
+                </div>
+            
+                <div class="w-[95px] h-[46px] flex justify-center items-center ml-[16px] cursor-pointer" id="youtube-logo">
+                    <img class="pointer-events-none" src="./images/YB.png" alt="YouTube logo" > 
+                </div>
+            </header>
 
-        <section class="py-[73px] px-2 pr-4 ">
+            <section class="py-[73px] px-2 pr-4 lg:-mt-3">
 
             <section class="">
                 <div class="side-nav-wrapper-icon">
@@ -343,23 +365,24 @@
                 
             </section>
     
-        </section>
+            </section>
 
-    </div>
-
-    <div class="w-full h-fit justify-center z-50 relative hidden lg:flex">
-        <div class="w-fit h-fit p-[6px] rounded-md relative -top-[50px] bg-[#616161b4] hidden " id="search-tool-tip">
-            <p class="text-white text-[0.9rem]">Search</p>
         </div>
-        <div class="w-fit h-fit p-[6px] rounded-md relative -top-[50px] left-[50px] bg-[#616161b4] hidden  " id="settings-tool-tip">
-            <p class="text-white text-[0.9rem]">Settings</p>
+
+        <div class="w-full h-fit justify-center z-50 relative hidden lg:flex">
+            <div class="w-fit h-fit p-[6px] rounded-md relative -top-[50px] bg-[#616161b4] hidden " id="search-tool-tip">
+                <p class="text-white text-[0.9rem]">Search</p>
+            </div>
+            <div class="w-fit h-fit p-[6px] rounded-md relative -top-[50px] left-[50px] bg-[#616161b4] hidden  " id="settings-tool-tip">
+                <p class="text-white text-[0.9rem]">Settings</p>
+            </div>
         </div>
     </div>
-
-    <main class="w-full h-full flex flex-col items-center overflow-x-hidden ">
-
-        <section class="w-full h-fit bg-transparent overflow-hidden flex flex-col  items-center mt-[0px] py-[50px]" id="wrapper-contents-container">
-            
+    <main class="w-[100vw] h-full flex flex-col items-center overflow-x-hidden ">
+        
+            <section class="w-full h-fit bg-transparent overflow-hidden mt-[0px] py-[130px] grid place-items-center md:px-[20px] md:grid-cols-2  md:py-[120px]  lg:grid-cols-3 lg:pl-[260px] "  id="wrapper-contents-container"> 
+                 
+                
         </section>
     </main>
     <footer>
