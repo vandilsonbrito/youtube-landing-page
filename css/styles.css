@@ -62,11 +62,11 @@ body {
     overflow: hidden;
   }
   
-  .custom-text-side-nav p {
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-  }
+.custom-text-side-nav p {
+white-space: nowrap;
+text-overflow: ellipsis;
+overflow: hidden;
+}
 
 
 .overlay {
@@ -80,6 +80,55 @@ body {
     bottom: 0;
     background-color: rgba(0,0,0,0.5); 
 }
+.active {
+    background-color: rgb(240, 240, 240);
+    font-weight: bold;
+}
+#scroll-side-nav {
+    height: 100vh;
+    position: relative;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: #999 transparent;
+}
+#scroll-side-nav::-webkit-scrollbar {
+    width: 8px; 
+}
+#scroll-side-nav {
+    scrollbar-width: thin;
+    scrollbar-color: #999 transparent;
+}
+
+#scroll-side-nav::-webkit-scrollbar-thumb {
+    background-color: #93979b; 
+    border-radius: 7px;
+    height: 10px;
+}
+
+#wrapper-contents-container {
+    height: 100vh;
+    overflow-y: auto;
+    scrollbar-width: 10px;
+    scrollbar-color: #515558;
+    
+}
+#wrapper-contents-container {
+    scrollbar-width: thin;
+    scrollbar-color: #515558 transparent;
+    scroll-behavior: smooth;
+}
+
+
+#wrapper-contents-container::-webkit-scrollbar {
+    width: 8px; 
+}
+
+#wrapper-contents-container::-webkit-scrollbar-thumb {
+    background-color: #515558; 
+    border-radius: 7px; 
+    
+}
+
 
 @media screen and (-webkit-min-device-pixel-ratio:0) { 
     .scroll-snap-container::-webkit-scrollbar {
@@ -102,10 +151,13 @@ body {
 .side-nav-wrapper-icon:hover {
     background-color: rgb(240, 240, 240);
 }
-.active {
+.side-nav-wrapper-items-active {
     background-color: rgb(240, 240, 240);
+}
+.side-nav-text-active {
     font-weight: bold;
 }
+
 
   
 
