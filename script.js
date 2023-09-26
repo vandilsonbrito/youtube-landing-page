@@ -1,16 +1,17 @@
-(function() {
+;(function() {
     
     const youtubeLogo = document.getElementById('youtube-logo');
     const searchIcon = document.getElementById("search-icon");
     const arrowBack = document.getElementById("arrow-back");
     const searchBtn = document.getElementById("search-btn");
+    const searchBtnMdLgScreens = document.getElementById('search-btn-md-lg-screens');
     const videoContainer = document.getElementById("wrapper-contents-container");
     const scrollSnapContainer = document.querySelector(".scroll-snap-container");
     const eraseIcon = document.getElementById('close-icon');
     const settingsIcon = document.getElementById('settings-icon');
     const burgerMenuLandPage = document.getElementById('burger-menu-land-page');
     const burgerMenuSideNav = document.getElementById('burger-menu-side-nav');
-  
+    
     
     let formattedDate = [];
 
@@ -18,13 +19,16 @@
   function searchMostPopularVideos(recentlyUploaded) {  
       
       const navItem = document.querySelectorAll('.nav-item');
+      const sideNavWrapperItems = document.querySelectorAll('.side-nav-wrapper-icon');
       navItem[0].classList.add('nav-item-active');
+      sideNavWrapperItems[0].classList.add('side-nav-text-active');
+      sideNavWrapperItems[0].classList.add('side-nav-wrapper-items-active');
 
       const apiKey = "AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8";
       const baseApiUrl = 'https://www.googleapis.com/youtube/v3'
 
   
-      axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8&type=video&part=snippet&${recentlyUploaded}chart=mostPopular`)
+      axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8&type=video&maxResults=20&part=snippet&${recentlyUploaded}chart=mostPopular`)
       .then(response => {
   
           const videoIds = response.data.items.map((items) => items.id.videoId);
@@ -54,7 +58,7 @@
 
               axios.get(`${baseApiUrl}/channels?part=snippet&id=${channelsId[index]}&key=${apiKey}`)
               .then(response => {
-              const channelThumbnail = response.data.items.map((item) => item.snippet.thumbnails.default.url);
+              const channelThumbnail = response.data.items.map((item) => item.snippet.thumbnails.medium.url);
               
               
               videoContainer.innerHTML += createVideoContainerHTML(
@@ -234,9 +238,9 @@
     index
   ) {
     return `
-        <div class="w-[300px] h-fit mb-10">
-          <div class="w-[300px] h-[155px]">
-            <iframe class="" src="${videoPlayerSrc}"></iframe>
+      <div class="w-[300px] h-[256px] mb-10  md:w-[330px] md:h-[295px] md:mb-30 ">
+          <div class="">
+            <iframe class= "md:w-full md:h-[195px] bg-black" src="${videoPlayerSrc}"></iframe>
           </div>
           <div class="w-full h-full pt-2">
             <div class="w-full flex gap-3" style="display: grid; grid-template-areas: 'image-container info-video-container'; grid-template-rows: 1; grid-template-columns: auto 2fr;">
@@ -258,7 +262,7 @@
               </div>
             </div>
           </div>
-        </div>
+      </div>
       `;
   }
 
@@ -272,10 +276,12 @@
     const overlay = document.querySelector('.overlay');
     const sideNav = document.getElementById('side-nav');
     
-    overlay.classList.toggle('hidden');
+    if(window.innerWidth < 1020) {
+        overlay.classList.toggle('hidden');
+    }
     sideNav.classList.toggle('hidden');
 
-    let isSideNavActived;
+    let isSideNavActived = null;
     if(!sideNav.classList.contains('hidden')) {
       limitingScrollBar(isSideNavActived = 1);
     }
@@ -288,8 +294,7 @@
     function whichIconNavIsSelected() {
       const arrayNavItems = Array.from(sideNavWrapperItems);
       arrayNavItems[0].classList.add('active')
-
-        const sideNavWrapperItemsPath = document.querySelectorAll('.side-nav-wrapper-icon path');
+      document.querySelectorAll('.side-nav-wrapper-icon path');
 
     }
     whichIconNavIsSelected()
@@ -322,6 +327,10 @@
   arrowBack.addEventListener('click', searchMostPopularVideos);
   searchBtn.addEventListener("click", () => {
     const searchQuery = document.getElementById("search-query").value;
+    searchVideosByQuery(searchQuery);
+  });
+  searchBtnMdLgScreens.addEventListener("click", () => {
+    const searchQuery = document.getElementById("search-query-md-lg-screens").value;
     searchVideosByQuery(searchQuery);
   });
   scrollSnapContainer.addEventListener('click', searchByScrollSnapContainer);
