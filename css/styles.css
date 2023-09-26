@@ -23,6 +23,7 @@ body {
     white-space: nowrap;
     
 }
+
 .nav-item {
     @apply w-fit h-fit bg-slate-100 rounded-lg cursor-pointer hover:bg-slate-200;
     display: flex;

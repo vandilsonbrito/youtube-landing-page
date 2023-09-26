@@ -89,9 +89,16 @@
     const principalNavHeader = document.getElementById('principal-nav');
     const queryNavHeader = document.getElementById('query-nav');
 
-
     principalNavHeader.classList.toggle('hidden');
-    queryNavHeader.classList.toggle('hidden');
+    
+    if(queryNavHeader.classList.contains('hidden')) {
+        queryNavHeader.classList.remove('hidden');
+        queryNavHeader.classList.add('flex');
+    }
+    else {
+      queryNavHeader.classList.add('hidden');
+      queryNavHeader.classList.remove('flex');
+    }
   }
 
 
