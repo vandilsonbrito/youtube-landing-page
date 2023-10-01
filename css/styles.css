@@ -6,13 +6,12 @@
     box-sizing: border-box;
 }
 
+
 body {
     overflow: visible;
 }
 
 .scroll-snap-container {
-    margin-right: 20px;
-    margin-left: 20px;
     display: flex;
     gap: 12px;
     overflow-x: scroll;
@@ -20,8 +19,10 @@ body {
     scroll-snap-align: start;
     scrollbar-width: none; /* hide scroll bar by default on web browsers */
     -ms-overflow-style: none; /* hide on IE */
-    white-space: nowrap;
-    
+    white-space: nowrap;  
+    touch-action: pan-x;
+    margin-right: 28px;
+    margin-left: 45px;
 }
 
 .nav-item {
@@ -34,6 +35,8 @@ body {
     max-height: 35px;
     padding: 10px;
     scroll-snap-align: start;
+    opacity: 1;
+    transition: opacity 0.3s ease-in-out;
 }
 .nav-item-active {
     background-color: black;
@@ -43,12 +46,55 @@ body {
     background-color: black;
 }
 
+.btn-scroll-left {
+    background-color: transparent;
+    color: rgb(156, 148, 148);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 100;
+    
+}
+.btn-scroll-left:hover {
+    background-color: rgb(226, 232, 240);
+}
+#btn-scroll-left-after {
+    width: 60px;
+    height: 40px;
+    z-index: 60;
+    background: linear-gradient(to right, rgb(255, 255, 255) 40%,rgba(255,255,255,0) 90%);
+}
+
+.btn-scroll-right {
+    background-color: transparent;
+    color: rgb(156, 148, 148);
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    z-index: 100;
+    
+}
+.btn-scroll-right:hover {
+    background-color: rgb(226, 232, 240);
+}
+#btn-scroll-right-before {
+    width: 60px;
+    height: 40px;
+    transform: translateY(-54%);
+    z-index: 60;
+    background: linear-gradient(to left, rgb(255, 255, 255) 20%,rgba(255,255,255,0) 90%);
+} 
+
+
 .title {
     width: 50%;
     text-align: center !important;
     margin-top: 20px;
 }
-
 
 .custom-text {
     display: -webkit-box;
@@ -113,12 +159,12 @@ overflow: hidden;
     scrollbar-color: #515558;
     
 }
+
 #wrapper-contents-container {
     scrollbar-width: thin;
     scrollbar-color: #515558 transparent;
     scroll-behavior: smooth;
 }
-
 
 #wrapper-contents-container::-webkit-scrollbar {
     width: 8px; 
@@ -129,6 +175,7 @@ overflow: hidden;
     border-radius: 7px; 
     
 }
+
 
 
 @media screen and (-webkit-min-device-pixel-ratio:0) { 
@@ -166,3 +213,6 @@ overflow: hidden;
   
 
 
+/* <div class= "md:w-full md:h-[195px] bg-black" src="${videoPlayerSrc}">
+                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw  text-white"></i><span class="sr-only">Loading...</span>
+                    </div> */
