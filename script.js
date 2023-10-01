@@ -12,6 +12,9 @@
     const settingsIcon = document.getElementById('settings-icon');
     const burgerMenuLandPage = document.getElementById('burger-menu-land-page');
     const burgerMenuSideNav = document.getElementById('burger-menu-side-nav');
+    const scrollContainer = document.querySelector('.scroll-snap-container');
+    const scrollButtonLeft = document.querySelector('.btn-scroll-left');
+    const scrollButtonRight = document.querySelector('.btn-scroll-right');
     
     
     let formattedDate = [];
@@ -52,7 +55,7 @@
           videoContainer.innerHTML = '';
           videoIds.forEach((videoId, index) => {
 
-              const videoPlayerSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0&controls=0&modestbranding=1&allowfullscreen`;
+              const videoPlayerSrc = `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&showinfo=0&controls=0&modestbranding=1&allowfullscreen`;
 
               const titles = response.data.items.map((item) => item.snippet.title);
 
@@ -90,7 +93,7 @@
     const queryNavHeader = document.getElementById('query-nav');
 
     principalNavHeader.classList.toggle('hidden');
-    
+
     if(queryNavHeader.classList.contains('hidden')) {
         queryNavHeader.classList.remove('hidden');
         queryNavHeader.classList.add('flex');
@@ -135,7 +138,7 @@
 
           videoIds.forEach((videoId, index) => {
 
-              const videoPlayerSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&showinfo=0&controls=0&modestbranding=1&allowfullscreen`;
+              const videoPlayerSrc = `https://www.youtube.com/embed/${videoId}?autoplay=0&rel=0&showinfo=0&controls=0&modestbranding=1&allowfullscreen`;
 
               const titles = response.data.items.map((item) => item.snippet.title)
 
@@ -326,11 +329,71 @@
     }
   }
  
+  let btnPosition = null;
+  function eachBrakPoint() {
+    const breakpoints = [370, 768, 1024, 1250, 1360, 1670];
+    const values = [210, 600, 850, 1050, 1160, 1700];
+    
+    for(let i = 0; i < breakpoints.length; i++) {
+      if((window.innerWidth >= breakpoints[i]) && (window.innerWidth < breakpoints[i + 1])) {
+        btnPosition = values[i];
+      }
+    }
+
+    return btnPosition
+  }
+  
+  eachBrakPoint()
+  
+  function changeBtnPosition() {
+  
+    const navItems = document.querySelectorAll('.nav-item');
+    
+    navItems.forEach((item) => {
+        const itemRect = item.getBoundingClientRect();
+
+        const btnScrollLeftAfter = document.getElementById('btn-scroll-left-after');
+        const btnScrollRightBefore = document.getElementById('btn-scroll-right-before');
+        console.log("------------------------------------");
+        console.log(parseFloat(itemRect.x));
+        console.log(item.textContent)
+    
+        
+        let btnLeftPosition = null;
+        window.innerWidth > 1020 ? btnLeftPosition = 270 : btnLeftPosition = 30;
+        if (((parseFloat(itemRect.x) > btnLeftPosition) && (item.children[0].textContent === "All"))) {
+            scrollButtonLeft.classList.remove('flex');
+            btnScrollLeftAfter.classList.remove('flex');
+            scrollButtonLeft.classList.add('hidden');
+            btnScrollLeftAfter.classList.add('hidden');
+         
+        } 
+        else if(((parseFloat(itemRect.x) < btnLeftPosition) && (item.children[0].textContent !== "All"))) {
+            scrollButtonLeft.classList.remove('hidden');
+            btnScrollLeftAfter.classList.remove('hidden');
+            scrollButtonLeft.classList.add('flex');
+            btnScrollLeftAfter.classList.add('flex');
+  
+        }
+    
+        if(parseFloat(itemRect.x) < btnPosition){
+            scrollButtonRight.style.display = 'none';
+            btnScrollRightBefore.style.display = 'none';
+     
+        }
+        else {
+          scrollButtonRight.style.display = 'flex';
+          btnScrollRightBefore.style.display = 'flex';
+
+        }
+        
+    });
+  }
 
   
 
   // EVENTS
-  /* searchMostPopularVideos(); */
+  searchMostPopularVideos();
   youtubeLogo.addEventListener('click', searchMostPopularVideos);
   searchIcon.addEventListener("click", togglePrincipalNavAndQueryNav);
   arrowBack.addEventListener("click", togglePrincipalNavAndQueryNav);
@@ -343,6 +406,7 @@
     const searchQuery = document.getElementById("search-query-md-lg-screens").value;
     searchVideosByQuery(searchQuery);
   });
+
   scrollSnapContainer.addEventListener('click', searchByScrollSnapContainer);
   window.innerWidth < 1020 ?  eraseIconSmallScreens.addEventListener('click', eraseSearchInput) : eraseIconBigScreens.addEventListener('click', eraseSearchInput); 
 
@@ -363,4 +427,13 @@
   burgerMenuLandPage.addEventListener('click', toggleSideNav);
   burgerMenuSideNav.addEventListener('click', toggleSideNav);
 
+
+  window.addEventListener('resize', eachBrakPoint);
+  scrollContainer.addEventListener('scroll', changeBtnPosition);
+  
+
+  scrollButtonLeft.addEventListener('click', () => scrollContainer.scrollLeft -= 170);
+  scrollButtonRight.addEventListener('click', () => scrollContainer.scrollLeft += 170);
+
+    
 })()
