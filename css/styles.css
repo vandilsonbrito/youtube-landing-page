@@ -138,20 +138,6 @@ overflow: hidden;
     scrollbar-width: thin;
     scrollbar-color: #999 transparent;
 }
-#scroll-side-nav::-webkit-scrollbar {
-    width: 8px; 
-}
-#scroll-side-nav {
-    scrollbar-width: thin;
-    scrollbar-color: #999 transparent;
-}
-
-#scroll-side-nav::-webkit-scrollbar-thumb {
-    background-color: #93979b; 
-    border-radius: 7px;
-    height: 10px;
-}
-
 #wrapper-contents-container {
     height: 100vh;
     overflow-y: auto;
@@ -159,22 +145,47 @@ overflow: hidden;
     scrollbar-color: #515558;
     
 }
-
-#wrapper-contents-container {
-    scrollbar-width: thin;
-    scrollbar-color: #515558 transparent;
-    scroll-behavior: smooth;
-}
-
-#wrapper-contents-container::-webkit-scrollbar {
-    width: 8px; 
-}
-
-#wrapper-contents-container::-webkit-scrollbar-thumb {
-    background-color: #515558; 
-    border-radius: 7px; 
+@media (min-width: 768px) {
+    #scroll-side-nav {
+        height: 100vh;
+        position: relative;
+        overflow-y: scroll;
+        scrollbar-width: thin;
+        scrollbar-color: #999 transparent;
+    }
+    #scroll-side-nav::-webkit-scrollbar {
+        width: 8px; 
+    }
+    #scroll-side-nav {
+        scrollbar-width: thin;
+        scrollbar-color: #999 transparent;
+    }
     
+    #scroll-side-nav::-webkit-scrollbar-thumb {
+        background-color: #93979b; 
+        border-radius: 7px;
+        height: 10px;
+    }
+    
+    #wrapper-contents-container {
+        scrollbar-width: thin;
+        scrollbar-color: #515558 transparent;
+        scroll-behavior: smooth;
+    }
+    
+    #wrapper-contents-container::-webkit-scrollbar {
+        width: 8px; 
+    }
+    
+    #wrapper-contents-container::-webkit-scrollbar-thumb {
+        background-color: #515558; 
+        border-radius: 7px; 
+        
+    }
 }
+
+
+
 
 
 
@@ -210,9 +221,3 @@ overflow: hidden;
   
 
 
-  
-
-
-/* <div class= "md:w-full md:h-[195px] bg-black" src="${videoPlayerSrc}">
-                        <i class="fa fa-spinner fa-pulse fa-3x fa-fw  text-white"></i><span class="sr-only">Loading...</span>
-                    </div> */
