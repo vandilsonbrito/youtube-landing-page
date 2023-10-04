@@ -15,8 +15,7 @@
     const scrollContainer = document.querySelector('.scroll-snap-container');
     const scrollButtonLeft = document.querySelector('.btn-scroll-left');
     const scrollButtonRight = document.querySelector('.btn-scroll-right');
-    
-    
+
     let formattedDate = [];
 
   // FUNCTIONS
@@ -32,7 +31,7 @@
       const baseApiUrl = 'https://www.googleapis.com/youtube/v3'
 
   
-      axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8&type=video&maxResults=20&part=snippet&${recentlyUploaded}chart=mostPopular`)
+      axios.get(`https://www.googleapis.com/youtube/v3/search?key=AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8&type=video&maxResults=10&part=snippet&${recentlyUploaded}chart=mostPopular`)
       .then(response => {
   
           const videoIds = response.data.items.map((items) => items.id.videoId);
@@ -106,16 +105,16 @@
 
 
   function searchVideosByQuery(searchQuery) {
+
       const apiKey = "AIzaSyDxoDC-gcdR3js4c9hye0SijsYG6YukZX8";
       const baseApiUrl = 'https://www.googleapis.com/youtube/v3';
 
    
-     
       videoContainer.innerHTML = '';
       
 
       // Make a request to the backend to fetch videos
-      axios.get(`${baseApiUrl}/search?key=${apiKey}&type=video&part=snippet&q=${searchQuery}`)
+      axios.get(`${baseApiUrl}/search?key=${apiKey}&type=video&part=snippet&maxResults=10&q=${searchQuery}`)
       .then(response => {
 
           const videoIds = response.data.items.map((items) => items.id.videoId);
@@ -170,7 +169,6 @@
 
   let oldValueItem = null;
   function searchByScrollSnapContainer(e) {
-    
     const navItem = document.querySelectorAll('.nav-item');
     navItem[0].classList.contains('nav-item-active') ? navItem[0].classList.remove('nav-item-active') : null;
 
@@ -247,11 +245,14 @@
     channelTitle,
     formattedDate,
     index
-  ) {
+  ) { /* <div class="w-full h-[256px] mb-10  md:w-[330px] md:h-[295px] md:mb-30 ">
+  <div class="">
+    <iframe class= "w-[screen] md:w-full md:h-[195px] bg-black" src="${videoPlayerSrc}"></iframe>
+  </div> */
     return `
-      <div class="w-[300px] h-[256px] mb-10  md:w-[330px] md:h-[295px] md:mb-30 ">
+      <div class="w-full h-[330px] mb-10  md:w-[330px] md:h-[295px] md:mb-3 ">
           <div class="">
-            <iframe class= "md:w-full md:h-[195px] bg-black" src="${videoPlayerSrc}"></iframe>
+            <iframe class= "w-full h-[220px] md:w-full md:h-[195px] bg-black z-[100]" src="${videoPlayerSrc}"></iframe>
           </div>
           <div class="w-full h-full pt-2">
             <div class="w-full flex gap-3" style="display: grid; grid-template-areas: 'image-container info-video-container'; grid-template-rows: 1; grid-template-columns: auto 2fr;">
@@ -354,9 +355,6 @@
 
         const btnScrollLeftAfter = document.getElementById('btn-scroll-left-after');
         const btnScrollRightBefore = document.getElementById('btn-scroll-right-before');
-        console.log("------------------------------------");
-        console.log(parseFloat(itemRect.x));
-        console.log(item.textContent)
     
         
         let btnLeftPosition = null;
@@ -390,6 +388,13 @@
     });
   }
 
+  function addStyleNavOnlyAtFirstItemActive() {
+    const navItem = document.querySelectorAll('.nav-item');
+    navItem.forEach((item) => {
+      item.classList.remove('nav-item-active')
+    })
+    navItem[0].classList.add('nav-item-active');
+  }
   
 
   // EVENTS
@@ -397,13 +402,14 @@
   youtubeLogo.addEventListener('click', searchMostPopularVideos);
   searchIcon.addEventListener("click", togglePrincipalNavAndQueryNav);
   arrowBack.addEventListener("click", togglePrincipalNavAndQueryNav);
-  arrowBack.addEventListener('click', searchMostPopularVideos);
   searchBtn.addEventListener("click", () => {
     const searchQuery = document.getElementById("search-query").value;
+    addStyleNavOnlyAtFirstItemActive();
     searchVideosByQuery(searchQuery);
   });
   searchBtnMdLgScreens.addEventListener("click", () => {
     const searchQuery = document.getElementById("search-query-md-lg-screens").value;
+    addStyleNavOnlyAtFirstItemActive();
     searchVideosByQuery(searchQuery);
   });
 
